@@ -1,7 +1,14 @@
-FROM nginx:alpine
+FROM teddysun/v2ray:latest
 
-RUN sed -i 's/listen       80;/listen 8080;/g' /etc/nginx/conf.d/default.conf
-
+# Expose the correct container port (8080)
 EXPOSE 8080
 
-CMD ["nginx", "-g", "daemon off;"]
+# Copy the VLESS config into the container
+COPY config.json /etc/v2ray/config.json
+
+# Run V2Ray with the config file
+CMD ["v2ray", "run", "-config", "/etc/v2ray/config.json"]
+
+
+# join telegram https://t.me/Fahad1975A  for new updates 
+# my telegram username is @Fahad1975A
